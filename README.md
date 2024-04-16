@@ -1,0 +1,1 @@
+A program that will guess the user's chosen word.
