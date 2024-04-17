@@ -4,15 +4,85 @@
 import random
 import time
 
+
+
+### function that picks a random word from the word bank
+def choose_word():
+    word_bank = ["great", "trace", "watch", "train", "phone", "blank", "short", "stamp", "magic", "smart"]
+    return random.choice(word_bank)
+
+
+### game loop
+def game():
+    word = choose_word().upper()
+    correct_letters = []
+    incorrect_letters = []
+    mistakes = 3
+    
+    while mistakes > 0:
+        print(f"\n\nCorrect letters guessed so far: {correct_letters}")
+        print(f"\nIncorrect letters guessed so far: {incorrect_letters}")
+        print(f"\nYou have {mistakes} mistakes remaining.")
+
+        guess = input("\n\nGuess a letter: ").upper()
+        
+        if guess in word:
+            print("\nYou guessed a letter!\n\n")
+            correct_letters.append(guess)
+            correct_letters.sort()
+            time.sleep(2)
+        else:
+            print("\nSorry, that letter is not in the word.\n\n")
+            incorrect_letters.append(guess)
+            incorrect_letters.sort()
+            mistakes -= 1
+            time.sleep(2)
+
+    print(f"\nYou lose. The word was: {word}\n\n")
+
+
 print("\n\nLet's play a game of word guessing!")
+print("\nThe program will choose a word from a list containing 10 words.")
+print("\nHint: All words are 5 letters long!")
+
+player_count = int(input("\n\nHow many players are playing? "))
+
+print("\n\nGet ready to play!\n")
+
+time.sleep(2)
+
+game()
+replay = input("\nWould you like to play again? (y/n): ")
+if replay == "y":
+    game()
+    replay = input("\nWould you like to play again? (y/n): ")
+    if replay == "y":
+        game()
+        print("\n\nThanks for playing!\n")
+    else:
+        print("\n\nThanks for playing!\n")
+else:
+    print("\n\nThanks for playing!\n")
 
 
-### a word bank containing 10 different words
-word_bank = ["great", "trace", "watch", "train", "phone", "blank", "short", "stamp", "magic", "smart"]
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
 ### pick a random word from the word bank
-chosen_word = random.choice(word_bank)
 print("\nThe program will choose a word from a list containing 10 words.")
 print("\nHint: All words are 5 letters long!")
 
@@ -22,6 +92,8 @@ player_count = int(input("\nHow many players are playing? "))
 
 guessed_letters = [] #sort in alphabetical order?
 
+
+### start game
 print("\n\nGet ready to play!")
 time.sleep(3)
 
@@ -30,16 +102,19 @@ turns += 1
 print(f"\n\nTurn {turns} of 3 for Player 1")
 print(f"\nLetters guessed so far: {guessed_letters}")
 
-this_guess = input("\nGuess a letter: ")
+this_guess = input("\nGuess a letter: ").lower()
+
 
 if this_guess in chosen_word:
     print("\nYou guessed a letter!")
 else:
     print("\nSorry, that letter is not in the word.")
 
+
 guessed_letters.append(this_guess)
 
 guess_word = input("\nWould you like to guess the word? (y/n): ")
+
 
 if guess_word == "y":
     word = input("\nAlright then! What is the word? ")
@@ -48,13 +123,7 @@ if guess_word == "y":
         print(f"\nThe word was: {chosen_word}\n\n")
     else:
         print("\n\nSorry, that is not the word.")
-
-turns += 1
-print(f"\n\nTurn {turns} of 3 for Player 2")
-
-
-
-
+'''
 
 
 
