@@ -5,15 +5,28 @@ import random
 import time
 
 
-
 ### function that picks a random word from the word bank
 def choose_word():
-    word_bank = ["great", "trace", "watch", "train", "phone", "blank", "short", "stamp", "magic", "smart"]
+    word_bank = ["great", "trace", "watch", "train", "phone", "blank", "short", "stamp", "magic", "smart", "floccinaucinihilipilification"]
     return random.choice(word_bank)
 
 
 ### game loop
 def game():
+    print("\n\nLet's play a game of word guessing!")
+    print("\nThe program will choose a word from a list containing 10 words.")
+    print("\nHint: All words are 5 letters long!")
+
+    player_count = int(input("\n\nHow many players are playing? "))
+    players = []
+    for i in range(0,player_count):
+        player_name = input("\n\nEnter player name: ")
+        player_name = player_name.upper()
+        players.append(player_name)
+
+    print("\n\nGet ready to play!\n")
+
+    time.sleep(2)
     word = choose_word().upper()
     correct_letters = []
     incorrect_letters = []
@@ -41,32 +54,22 @@ def game():
     print(f"\nYou lose. The word was: {word}\n\n")
 
 
-print("\n\nLet's play a game of word guessing!")
-print("\nThe program will choose a word from a list containing 10 words.")
-print("\nHint: All words are 5 letters long!")
 
-player_count = int(input("\n\nHow many players are playing? "))
-
-print("\n\nGet ready to play!\n")
-
-time.sleep(2)
 
 game()
-replay = input("\nWould you like to play again? (y/n): ")
+replay = input("\nWould you like to play again? (y/n):")
 if replay == "y":
+    time.sleep(1)
     game()
     replay = input("\nWould you like to play again? (y/n): ")
     if replay == "y":
+        time.sleep(1)
         game()
         print("\n\nThanks for playing!\n")
     else:
         print("\n\nThanks for playing!\n")
 else:
     print("\n\nThanks for playing!\n")
-
-
-
-
 
 
 
