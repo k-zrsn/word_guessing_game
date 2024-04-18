@@ -11,22 +11,12 @@ def choose_word():
     return random.choice(word_bank)
 
 
+def create_player(name):
+    return {'Player': name, 'Score': 0}
+
+
 ### game loop
 def game():
-    print("\n\nLet's play a game of word guessing!")
-    print("\nThe program will choose a word from a list containing 10 words.")
-    print("\nHint: All words are 5 letters long!")
-
-    player_count = int(input("\n\nHow many players are playing? "))
-    players = []
-    for i in range(0,player_count):
-        player_name = input("\n\nEnter player name: ")
-        player_name = player_name.upper()
-        players.append(player_name)
-
-    print("\n\nGet ready to play!\n")
-
-    time.sleep(2)
     word = choose_word().upper()
     correct_letters = []
     incorrect_letters = []
@@ -41,8 +31,21 @@ def game():
         
         if guess in word:
             print("\nYou guessed a letter!\n\n")
+            #for guess in word:
+            letter_count = word.count(guess)
+            print(f"That letter: {guess} appears in the word {letter_count} time(s).")
             correct_letters.append(guess)
             correct_letters.sort()
+            guess_word = input("\nWould you like to guess the word? (y/n): ")
+
+            if guess_word == "y":
+                word_guess = input("\nAlright then! What is the word? ")
+                if word_guess == word:
+                    print("\n\nCongratulations! You won!")
+                    print(f"\nThe word was: {word}\n\n")
+                else:
+                    print("\n\nSorry, that is not the word.")
+
             time.sleep(2)
         else:
             print("\nSorry, that letter is not in the word.\n\n")
@@ -54,6 +57,27 @@ def game():
     print(f"\nYou lose. The word was: {word}\n\n")
 
 
+
+
+
+print("\n\nLet's play a game of word guessing!")
+print("\nThe program will choose a word from a list containing 10 words.")
+print("\nHint: All words are 5 letters long!")
+
+player_count = int(input("\n\nHow many players are playing? "))
+players = []
+
+for i in range(player_count):
+    player_name = input("\n\nEnter player name: ")
+    player_name = player_name.upper()
+    players.append(create_player(player_name))
+
+time.sleep(1)
+print("\n\nThe scoreboard is set!")
+print(players)
+time.sleep(3)
+print("\n\nGet ready to play!\n")
+time.sleep(2)
 
 
 game()
@@ -70,67 +94,4 @@ if replay == "y":
         print("\n\nThanks for playing!\n")
 else:
     print("\n\nThanks for playing!\n")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
-### pick a random word from the word bank
-print("\nThe program will choose a word from a list containing 10 words.")
-print("\nHint: All words are 5 letters long!")
-
-
-### get player count
-player_count = int(input("\nHow many players are playing? "))
-
-guessed_letters = [] #sort in alphabetical order?
-
-
-### start game
-print("\n\nGet ready to play!")
-time.sleep(3)
-
-turns = 0
-turns += 1
-print(f"\n\nTurn {turns} of 3 for Player 1")
-print(f"\nLetters guessed so far: {guessed_letters}")
-
-this_guess = input("\nGuess a letter: ").lower()
-
-
-if this_guess in chosen_word:
-    print("\nYou guessed a letter!")
-else:
-    print("\nSorry, that letter is not in the word.")
-
-
-guessed_letters.append(this_guess)
-
-guess_word = input("\nWould you like to guess the word? (y/n): ")
-
-
-if guess_word == "y":
-    word = input("\nAlright then! What is the word? ")
-    if word == chosen_word:
-        print("\n\nCongratulations! You won!")
-        print(f"\nThe word was: {chosen_word}\n\n")
-    else:
-        print("\n\nSorry, that is not the word.")
-'''
-
-
-
-
-
-
 
