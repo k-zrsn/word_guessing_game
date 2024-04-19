@@ -12,7 +12,7 @@ def choose_word():
 
 
 def create_player(name):
-    return {'Player': name, 'Score': 0}
+    return {'Player': name, "Score": 0, 'Total Attempts': 0}
 
 
 ### game loop
@@ -36,13 +36,14 @@ def game():
             print(f"That letter: {guess} appears in the word {letter_count} time(s).")
             correct_letters.append(guess)
             correct_letters.sort()
-            guess_word = input("\nWould you like to guess the word? (y/n): ")
+            guess_word = input("\nWould you like to guess the word? (y/n): ").lower()
 
             if guess_word == "y":
-                word_guess = input("\nAlright then! What is the word? ")
+                word_guess = input("\nAlright then! What is the word? ").upper()
                 if word_guess == word:
                     print("\n\nCongratulations! You won!")
                     print(f"\nThe word was: {word}\n\n")
+                    break
                 else:
                     print("\n\nSorry, that is not the word.")
 
@@ -53,11 +54,9 @@ def game():
             incorrect_letters.sort()
             mistakes -= 1
             time.sleep(2)
-
-    print(f"\nYou lose. The word was: {word}\n\n")
-
-
-
+    
+    if mistakes == 0:
+        print(f"\nYou lose. The word was: {word}\n\n")
 
 
 print("\n\nLet's play a game of word guessing!")
@@ -65,22 +64,26 @@ print("\nThe program will choose a word from a list containing 10 words.")
 print("\nHint: All words are 5 letters long!")
 
 player_count = int(input("\n\nHow many players are playing? "))
-players = []
+scoreboard = []
+player_attempts = []
 
 for i in range(player_count):
     player_name = input("\n\nEnter player name: ")
     player_name = player_name.upper()
-    players.append(create_player(player_name))
+    scoreboard.append(create_player(player_name))
 
 time.sleep(1)
 print("\n\nThe scoreboard is set!")
-print(players)
-time.sleep(3)
+print(scoreboard)
+time.sleep(2)
 print("\n\nGet ready to play!\n")
 time.sleep(2)
 
 
 game()
+
+
+'''
 replay = input("\nWould you like to play again? (y/n):")
 if replay == "y":
     time.sleep(1)
@@ -94,4 +97,4 @@ if replay == "y":
         print("\n\nThanks for playing!\n")
 else:
     print("\n\nThanks for playing!\n")
-
+'''
