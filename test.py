@@ -56,7 +56,56 @@ def play():
 
                 print(f"\nCorrect letters guessed so far: {correct_letters}")
                 print(f"\nIncorrect letters guessed so far: {incorrect_letters}")
+                
                 guess = input("\n\nGuess a letter: ").upper()
+
+                if guess in incorrect_letters or correct_letters:
+                    print("\nThat letter has already been guessed, try again.")
+                    guess = input("\n\nGuess a letter: ").upper()
+
+                    if guess in word:
+                        print("\n\nYou guessed a letter!")
+                        #for guess in word:
+                        letter_count = word.count(guess)
+                        print(f"\nThe letter: {guess} appears in the word {letter_count} time(s).")
+                        correct_letters.append(guess)
+                        correct_letters.sort()
+
+                        guess_word = input("\n\nWould you like to guess the word? (y/n): ").lower()
+
+                        if guess_word == "y":
+                            word_guess = input("\n\nAlright then! What is the word? ").upper()
+                            if word_guess == word:
+                                time.sleep(2)
+                                print(f"\n\n\nCongratulations! {player} won!")
+                                print(f"\nThe word was: {word}")
+                                print("\nAttempts:")
+                                for player, attempts in scoreboard.items():
+                                    print(f"{player}: {attempts}")
+                                quit()
+                                
+                            else:
+                                time.sleep(2)
+                                print("\n\nSorry, that is not the word.")
+                                mistakes = mistakes - 1
+                                print(f"\n{player} has {mistakes} mistake(s) left\n\n")
+
+                        time.sleep(2)
+                    else:
+                        print("\nSorry, that letter is not in the word.\n\n")
+                        incorrect_letters.append(guess)
+                        incorrect_letters.sort()
+                        #mistake_made = make_mistake(player)
+                        #mistake_board[player] += mistake_made
+
+                        time.sleep(2)
+                
+                ### prints scoreboard
+                print("\nAttempts:")
+                for player, attempts in scoreboard.items():
+                    print(f"{player}: {attempts}")
+                    
+
 
                 if guess in word:
                     print("\n\nYou guessed a letter!")
@@ -94,6 +143,7 @@ def play():
                     #mistake_board[player] += mistake_made
 
                     time.sleep(2)
+                
 
 
                 ### prints scoreboard
