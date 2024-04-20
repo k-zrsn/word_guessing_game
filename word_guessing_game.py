@@ -87,7 +87,7 @@ def play():
                 incorrect_letters.append(guess)
                 incorrect_letters.sort()
                 mistake_made = make_mistake(player)
-                mistake_board[player] += mistake_made
+                #mistake_board[player] += mistake_made
 
                 time.sleep(2)
 
