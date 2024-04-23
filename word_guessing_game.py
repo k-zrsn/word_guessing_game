@@ -7,11 +7,14 @@ player_list = []
 correct_letters = []
 incorrect_letters = []
 
+
+### randomly choose a letter from the word bank
 def choose_word():
-    word_bank = ["great", "trace", "watch", "train", "phone", "blank", "short", "stamp", "magic", "smart"]
+    word_bank = ["iribe", "eppley", "mckeldin", "hornbake", "tawes", "armory", "atlantic", "stamp", "yahentamitsi", "jimenez"]
     return random.choice(word_bank)
 
 
+### create a scoreboard after getting the number of players
 def create_scoreboard(player_count):
     scoreboard = {}
     for i in range(1, player_count + 1):
@@ -21,27 +24,20 @@ def create_scoreboard(player_count):
     return scoreboard
 
 
+### keeps track of number of guesses and lets user know who's turn it is
 def next_turn(player_name):
     letter_guesses = 0
-    print(f"\nIt's {player_name}'s turn.")
+    print(f"\n\nIt's {player_name}'s turn.")
     return letter_guesses + 1
 
 
+### main game play loop
 def play():
     play_loop = True
     while play_loop:
         incorrect_guess = {player : 3 for player in player_list}
         while incorrect_guess != -1:
             for player in player_list: 
-                if incorrect_guess[player] == 0: 
-                    print(f"\n\nThat was your last guess. You lost!")
-                    print(f"\nThe word was: {word}")
-            
-                    print("\nNumber of guesses:")
-                    for player, letter_guesses in scoreboard.items():
-                        print(f"{player}: {letter_guesses}")
-                    play_loop = False
-                    quit()
 
                 take_turn = next_turn(player)
                 scoreboard[player] += take_turn
@@ -67,11 +63,19 @@ def play():
                             time.sleep(2)
                             print("\n\nSorry, that is not the word.")
                             incorrect_guess[player] -= 1
-                            print(f"\n{player} has {incorrect_guess[player]} mistake(s) left\n\n")
-
+                            print(f"\n{player} has {incorrect_guess[player]} mistake(s) left")
+                            if incorrect_guess[player] == 0: 
+                                print(f"\n\nThat was {player}'s last guess. {player} lost!")
+                                print(f"\nThe word was: {word}")
+                        
+                                print("\nNumber of guesses:")
+                                for player, letter_guesses in scoreboard.items():
+                                    print(f"{player}: {letter_guesses}")
+                                play_loop = False
+                                quit()
                     time.sleep(1)
                 
-                guess = input("\n\nGuess a letter: ").upper()
+                guess = input("\nGuess a letter: ").upper()
 
                 if guess in correct_letters or guess in incorrect_letters:
                     print("\n\nThat letter has already been guessed!\n\n")
@@ -87,17 +91,16 @@ def play():
                     correct_letters.sort()
                     time.sleep(2)
                 else:
-                    print("\nSorry, that letter is not in the word.\n\n")
+                    print("\n\nSorry, that letter is not in the word.\n")
                     incorrect_letters.append(guess)
                     incorrect_letters.sort()
                     time.sleep(2)
                 
-                ### prints scoreboard
                 print("\nNumber of guesses:")
                 for player, letter_guesses in scoreboard.items():
                     print(f"{player}: {letter_guesses}")
 
-                if letter_guesses == 2:
+                if letter_guesses == 10:
                     give_up = input("\n\nWould you like to give up? (y/n): ").lower()
                     if give_up == "y":
                         time.sleep(1)
@@ -109,6 +112,8 @@ def play():
 
 
 word = choose_word().upper()
+print("\n\nLet's play a word guessing game!")
+print("\nThe theme of the words are UNIVERSITY OF MARYLAND BUILDINGS")
 player_count = int(input("\n\nEnter the number of players: "))
 scoreboard = create_scoreboard(player_count)
 
