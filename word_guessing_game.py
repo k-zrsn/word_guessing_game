@@ -4,7 +4,13 @@
 import random
 import time
 
+######
 
+
+############ MAKE LETTER REPEAT CHECK AND WORK ON MISTAKE COUNTER ###########
+
+
+####
 
 players = []
 correct_letters = []
@@ -26,31 +32,39 @@ def create_scoreboard(player_count):
 
 def next_turn(player_name):
     attempts = 0
-    print(f"\n\n\nIt's {player_name}'s turn.")
+    print(f"\nIt's {player_name}'s turn.")
     return attempts + 1
 
 
 def play():
     play_loop = True
     while play_loop:
-        mistakes = 3
-        while mistakes > 0:
-            for player in players:
-
-                if mistakes == 0:
+        mistakes = {player : 3 for player in players}
+        print (mistakes)
+        while mistakes != -1:
+            for player in players: 
+                if mistakes[player] == 0: 
                     print(f"\n\nThat was your last guess. You lost!")
                     print(f"\nThe word was: {word}")
+                
                     print("\nAttempts:")
                     for player, attempts in scoreboard.items():
                         print(f"{player}: {attempts}")
                     play_loop = False
-                    break
+                    quit()
+
                 take_turn = next_turn(player)
                 scoreboard[player] += take_turn
 
                 print(f"\nCorrect letters guessed so far: {correct_letters}")
                 print(f"\nIncorrect letters guessed so far: {incorrect_letters}")
+                
                 guess = input("\n\nGuess a letter: ").upper()
+
+                if guess in correct_letters or guess in incorrect_letters:
+                    print("\n\nYou already guessed that letter!")
+                    time.sleep(2)
+                    continue
 
                 if guess in word:
                     print("\n\nYou guessed a letter!")
@@ -76,18 +90,18 @@ def play():
                         else:
                             time.sleep(2)
                             print("\n\nSorry, that is not the word.")
-                            mistakes = mistakes - 1
-                            print(f"\n{player} has {mistakes} mistake(s) left\n\n")
+                            mistakes[player] -= 1
+                            print(f"\n{player} has {mistakes[player]} mistake(s) left\n\n")
 
                     time.sleep(2)
                 else:
                     print("\nSorry, that letter is not in the word.\n\n")
                     incorrect_letters.append(guess)
                     incorrect_letters.sort()
-                    #mistake_made = make_mistake(player)
-                    #mistake_board[player] += mistake_made
+
 
                     time.sleep(2)
+                
 
 
                 ### prints scoreboard
