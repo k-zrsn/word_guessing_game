@@ -4,6 +4,7 @@
 import random
 import time
 import turn
+import results
 
 ### create necessary lists
 player_list = []
@@ -55,14 +56,8 @@ def play():
                         if word_guess == word:
                             time.sleep(2)
                             print(f"\n\n\nCongratulations! {player} won!")
-                            print(f"\nThe word was: {word}")
-                            time.sleep(1)
-                            print("\nNumber of guesses:")
-                            ### print scoreboard
-                            for player, letter_guesses in scoreboard.items():
-                                print(f"{player}: {letter_guesses}")
-                            print("\n\nThanks for playing!\n")
-                            quit()
+                            ### print results
+                            results.game_results(word, scoreboard)
                         ### wrong word, keep playing
                         else:
                             time.sleep(2)
@@ -73,15 +68,9 @@ def play():
                             ### lose game when player has no more mistakes remaining
                             if incorrect_guess[player] == 0: 
                                 print(f"\n\nThat was {player}'s last guess. {player} lost!")
-                                print(f"\nThe word was: {word}")
-                                time.sleep(1)
-                                print("\nNumber of guesses:")
-                                ### print scoreboard
-                                for player, letter_guesses in scoreboard.items():
-                                    print(f"{player}: {letter_guesses}")
-                                print("\n\nThanks for playing!\n")
+                                ### print results
+                                results.game_results(word, scoreboard)
                                 play_loop = False
-                                quit()
                     time.sleep(1)
                 
                 ### get player's letter guess
@@ -109,8 +98,8 @@ def play():
                     incorrect_letters.sort()
                     time.sleep(2)
 
-                print("\nNumber of guesses:")
                 ### print scoreboard
+                print("\nNumber of guesses:")
                 for player, letter_guesses in scoreboard.items():
                     print(f"{player}: {letter_guesses}")
 
@@ -119,13 +108,9 @@ def play():
                     give_up = input("\n\nWould you like to give up? (y/n): ").lower()
                     if give_up == "y":
                         time.sleep(1)
-                        print(f"\n\nThe word was: {word}")
-                        print("\nNumber of guesses:")
-                        ### print scoreboard
-                        for player, letter_guesses in scoreboard.items():
-                            print(f"{player}: {letter_guesses}")
-                        print("\n\nThanks for playing!\n")
-                        quit()
+                        ### print results
+                        results.game_results(word, scoreboard)
+
 
 ### choose random word from word_bank
 word = random.choice(word_bank).upper()
