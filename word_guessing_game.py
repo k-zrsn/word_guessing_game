@@ -18,7 +18,8 @@ def create_scoreboard(player_count):
     """
     Docstring:
     A function that creates a scoreboard,
-    adds a player to it depending on the number of players,
+    gets player's names,
+    adds them to the board depending on the number of players,
     and returns the scoreboard
     """
     scoreboard = {}
@@ -39,7 +40,13 @@ print("\nThe theme of the words are UNIVERSITY OF MARYLAND BUILDINGS")
 
 
 ### get player count
-player_count = int(input("\n\nEnter the number of players: "))
+getting_count = True
+while getting_count:
+    try:
+        player_count = int(input("\n\nEnter the number of players: "))
+        getting_count = False
+    except ValueError:
+        print("\nInvalid input, please enter a number.")
 
 
 ### create and print the scoreboard
