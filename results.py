@@ -14,5 +14,5 @@ def game_results(word, scoreboard):
     print("\nNumber of guesses:")
     for player, letter_guesses in scoreboard.items():
         print(f"{player}: {letter_guesses}")
-    print("\n\nThanks for playing!\n\n")
+    print("\n\nThanks for playing!\n\n\n")
     quit()
