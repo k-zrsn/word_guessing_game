@@ -1,7 +1,9 @@
 ### word guessing game 
 
+
 import random
 import time
+import turn
 
 player_list = []
 correct_letters = []
@@ -9,26 +11,23 @@ incorrect_letters = []
 
 
 ### randomly choose a letter from the word bank
-def choose_word():
-    word_bank = ["iribe", "eppley", "mckeldin", "hornbake", "tawes", "armory", "atlantic", "stamp", "yahentamitsi", "jimenez"]
-    return random.choice(word_bank)
+word_bank = ["iribe", "eppley", "mckeldin", "hornbake", "tawes", "armory", "atlantic", "stamp", "yahentamitsi", "jimenez"]
 
 
 ### create a scoreboard after getting the number of players
 def create_scoreboard(player_count):
+    """
+    Docstring:
+    A function that creates a scoreboard,
+    adds a player to it depending on the number of players,
+    and returns the scoreboard
+    """
     scoreboard = {}
     for i in range(1, player_count + 1):
         player_name = input(f"\nEnter name for Player {i}: ").upper()
         scoreboard[player_name] = 0
         player_list.append(player_name)
     return scoreboard
-
-
-### keeps track of number of guesses and lets user know who's turn it is
-def next_turn(player_name):
-    letter_guesses = 0
-    print(f"\n\nIt's {player_name}'s turn.")
-    return letter_guesses + 1
 
 
 ### main game play loop
@@ -39,7 +38,7 @@ def play():
         while incorrect_guess != -1:
             for player in player_list: 
 
-                take_turn = next_turn(player)
+                take_turn = turn.next_turn(player)
                 scoreboard[player] += take_turn
 
                 print(f"\nCorrect letters guessed so far: {correct_letters}")
@@ -55,22 +54,26 @@ def play():
                             time.sleep(2)
                             print(f"\n\n\nCongratulations! {player} won!")
                             print(f"\nThe word was: {word}")
+                            time.sleep(1)
                             print("\nNumber of guesses:")
                             for player, letter_guesses in scoreboard.items():
                                 print(f"{player}: {letter_guesses}")
+                            print("\n\nThanks for playing!\n")
                             quit()
                         else:
                             time.sleep(2)
                             print("\n\nSorry, that is not the word.")
                             incorrect_guess[player] -= 1
-                            print(f"\n{player} has {incorrect_guess[player]} mistake(s) left")
+                            time.sleep(1)
+                            print(f"\n{player} has {incorrect_guess[player]} mistake(s) left.\n\n \nIt's still {player}'s turn.")
                             if incorrect_guess[player] == 0: 
                                 print(f"\n\nThat was {player}'s last guess. {player} lost!")
                                 print(f"\nThe word was: {word}")
-                        
+                                time.sleep(1)
                                 print("\nNumber of guesses:")
                                 for player, letter_guesses in scoreboard.items():
                                     print(f"{player}: {letter_guesses}")
+                                print("\n\nThanks for playing!\n")
                                 play_loop = False
                                 quit()
                     time.sleep(1)
@@ -107,11 +110,12 @@ def play():
                         print(f"\n\nThe word was: {word}")
                         print("\nNumber of guesses:")
                         for player, letter_guesses in scoreboard.items():
-                            print(f"{player}: {letter_guesses}\n")
+                            print(f"{player}: {letter_guesses}")
+                        print("\n\nThanks for playing!\n")
                         quit()
 
 
-word = choose_word().upper()
+word = random.choice(word_bank).upper()
 print("\n\nLet's play a word guessing game!")
 print("\nThe theme of the words are UNIVERSITY OF MARYLAND BUILDINGS")
 player_count = int(input("\n\nEnter the number of players: "))
