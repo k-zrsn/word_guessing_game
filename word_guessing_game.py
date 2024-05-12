@@ -2,6 +2,7 @@
 
 import random
 import time
+import pandas as pd
 import turn
 import results
 
@@ -30,6 +31,7 @@ def create_scoreboard(player_count):
     return scoreboard
 
 
+
 ### choose random word from word_bank
 word = random.choice(word_bank).upper()
 
@@ -50,24 +52,34 @@ while getting_count:
 
 
 ### create and print the scoreboard
-scoreboard = create_scoreboard(player_count)
+#scoreboard = create_scoreboard(player_count)
+scoreboard = {}
+for i in range(1, player_count + 1):
+    player_name = input(f"\nEnter name for Player {i}: ").upper()
+    scoreboard[player_name] = 0
+    player_list.append(player_name)
 time.sleep(1)
-print("\n\nThe scoreboard is set!")
-time.sleep(0.5)
-print("\nNumber of guesses:")
-for player, letter_guesses in scoreboard.items():
-    print(f"{player}: {letter_guesses}")
+print("\n\nThe scoreboard is set!\n")
+time.sleep(1)
+name = list(scoreboard.keys())
+guess_number = list(scoreboard.values())
+
+player_data = {"Player:" : name,
+               "Guesses:" : guess_number}
+
+player_dataframe = pd.DataFrame(data = player_data) 
+print(player_dataframe.to_string(index = False))
 
 
 ### print rules for the game
 if player_count > 1:
-    time.sleep(0.5)
+    time.sleep(1.5)
     print("\nRULES:\nEach player tries to guess a LETTER of the word\nand has 3 attempts to guess the WHOLE word.\nWhoever has the least number of guesses wins...")
 
     time.sleep(3)
     print("\nBut whoever guesses the word first wins!\n")
 else:
-    time.sleep(0.5)
+    time.sleep(1.5)
     print("\nRULES:\nTry to guess each LETTER of the word\nYou have 3 attempts to guess the WHOLE word\n\nGood luck!\n")
 
 
@@ -117,10 +129,11 @@ while play_loop:
             
             ### get player's letter guess
             guess = input("\nGuess a letter: ").upper()
+            time.sleep(1)
 
             ### already guessed letter
             if guess in correct_letters or guess in incorrect_letters:
-                print("\n\nThat letter has already been guessed!\n\n")
+                print("\n\nThat letter has already been guessed!\n")
                 time.sleep(2)
                 continue
 
