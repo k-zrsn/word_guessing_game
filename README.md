@@ -1,4 +1,4 @@
-A guessing game where users have to guess the letters of a word that has randomly been chosen from a word bank and figure out the secret word.
+A guessing game where users have to guess the letters of a word and figure out what it is.
 
 The word bank's theme is UNIVERSITY OF MARYLAND BUILDINGS
 
