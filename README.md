@@ -18,14 +18,14 @@ wrong.
 
 
 ## How to play
-1. The game will begin by welcoming players and ask how many players are playing and their names,
+1. The game will begin by welcoming players and ask how many players are playing and their names.
 
-2. Players will then start taking turns guessing letters
+2. Players will then start taking turns guessing letters. On every turn, an updated list of correct and incorrect letters will be presented.
 
-3. Players will also have the option to guess the word 
+3. Players will also have the option to guess the word.
 
-4. Once a player has three wrong word guesses, they loose the game
+4. Once a player has three wrong word guesses, the game is lost.
 
-5. If a player has correctly guessed the word, they win and a scoreboard will be presented
+5. If a player has correctly guessed the word, they win and a scoreboard will be presented.
 
-6. After ten guesses and players still can't figure out the word, they will have the option to give up
+6. After ten guesses and players still can't figure out the word, they will have the option to give up.
