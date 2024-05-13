@@ -14,24 +14,6 @@ incorrect_letters = []
 word_bank = ["iribe", "eppley", "mckeldin", "hornbake", "tawes", "armory", "atlantic", "stamp", "shoemaker", "jimenez"]
 
 
-### scoreboard function
-def create_scoreboard(player_count):
-    """
-    Docstring:
-    A function that creates a scoreboard,
-    gets player's names,
-    adds them to the board depending on the number of players,
-    and returns the scoreboard
-    """
-    scoreboard = {}
-    for i in range(1, player_count + 1):
-        player_name = input(f"\nEnter name for Player {i}: ").upper()
-        scoreboard[player_name] = 0
-        player_list.append(player_name)
-    return scoreboard
-
-
-
 ### choose random word from word_bank
 word = random.choice(word_bank).upper()
 
@@ -52,7 +34,6 @@ while getting_count:
 
 
 ### create and print the scoreboard
-#scoreboard = create_scoreboard(player_count)
 scoreboard = {}
 for i in range(1, player_count + 1):
     player_name = input(f"\nEnter name for Player {i}: ").upper()
@@ -87,10 +68,12 @@ else:
 time.sleep(2.5)
 play_loop = True
 while play_loop:
+
     ### establish number of mistakes remaining each player has
     incorrect_guess = {player : 3 for player in player_list}
     while incorrect_guess != -1:
         for player in player_list: 
+
             ### cycles through players
             take_turn = turn.next_turn(player)
             scoreboard[player] += take_turn
@@ -106,12 +89,15 @@ while play_loop:
                 ### asks player for word
                 if guess_word == "y":
                     word_guess = input("\n\nAlright then! What is the word? ").upper()
+
                     ### win game
                     if word_guess == word:
                         time.sleep(2)
                         print(f"\n\n\nCongratulations! {player} won!")
+                        
                         ### print results
                         results.game_results(word, scoreboard)
+
                     ### wrong word, keep playing
                     else:
                         time.sleep(2)
@@ -119,9 +105,11 @@ while play_loop:
                         incorrect_guess[player] -= 1
                         time.sleep(1)
                         print(f"\n{player} has {incorrect_guess[player]} mistake(s) left.\n\n \nIt's still {player}'s turn.")
+
                         ### lose game when player has no more mistakes remaining
                         if incorrect_guess[player] == 0: 
                             print(f"\n\nThat was {player}'s last guess. {player} lost!")
+
                             ### print results
                             results.game_results(word, scoreboard)
                             play_loop = False
@@ -146,6 +134,7 @@ while play_loop:
                 correct_letters.append(guess)
                 correct_letters.sort()
                 time.sleep(2)
+
             ### add incorrect letter to list
             else:
                 print("\n\nSorry, that letter is not in the word.\n")
@@ -163,5 +152,6 @@ while play_loop:
                 give_up = input("\n\nWould you like to give up? (y/n): ").lower()
                 if give_up == "y":
                     time.sleep(1)
+
                     ### print results
                     results.game_results(word, scoreboard)
