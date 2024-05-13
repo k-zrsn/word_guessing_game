@@ -7,7 +7,7 @@ A guessing game where users have to guess the letters of a word and figure out w
 The word bank's theme is UNIVERSITY OF MARYLAND BUILDINGS
 
 
-## Rules:
+## Rules
 - One or more players can play and players take turns to guess a letter.
 
 - Players can take as many ***letter guesses*** as they want,
@@ -17,7 +17,7 @@ wrong.
 - A player’s final score is the number of ***turns*** (letter guesses) they made before guessing the correct word. Lower scores are better.
 
 
-## How to play
+## How To Play
 1. The game will begin by welcoming players and ask how many players are playing and their names.
 
 2. Players will then start taking turns guessing letters. On every turn, an updated list of correct and incorrect letters will be presented.
