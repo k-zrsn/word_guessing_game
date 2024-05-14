@@ -5,6 +5,52 @@ import time
 import pandas as pd
 import turn
 import results
+#import hints
+
+def word_hint(word):
+    """
+    Docstring:
+    A function that returns a hint 
+    based on the word.
+    """
+    if word == "iribe":
+        hint = "\n\nHint: Glass building"
+
+    elif word == "eppley":
+        hint = "\n\nHint: Rec center"
+
+    elif word == "mckeldin" or word == "hornbake":
+        hint = "\n\nHint: Good place to study"
+
+    elif word == "tawes":
+        hint = "\n\nHint: Writing center"
+
+    elif word == "armory":
+        hint = "\n\nHint: ROTC"
+
+    elif word == "atlantic":
+        hint = "\n\nHint: Shares name with an ocean"
+
+    elif word == "stamp":
+        hint = "\n\nHint: Terpzone"
+
+    elif word == "shoemaker":
+        hint = "\n\nHint: Shoes"
+
+    elif word == "jimenez":
+        hint = "\n\nHint: Professor of Spanish language and literature"
+
+
+    return hint
+
+
+
+
+
+
+
+
+
 
 
 ### create necessary lists
@@ -148,10 +194,17 @@ while play_loop:
                 print(f"{player}: {letter_guesses}")
 
             ### option to give up after 10 attempts
-            if letter_guesses == 10:
-                give_up = input("\n\nWould you like to give up? (y/n): ").lower()
-                if give_up == "y":
+            if letter_guesses == 2:
+                give_up = input("\n\nWould you like to give up?\nTo give up, type 'g'\nFor a hint, type 'h'\nTo continue playing, type 'c'\n\n").lower()
+
+                if give_up == "g":
                     time.sleep(1)
 
                     ### print results
                     results.game_results(word, scoreboard)
+
+                elif give_up == "h":
+                    word_hint(word)
+
+                else:
+                    continue
