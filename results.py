@@ -2,6 +2,7 @@
 
 
 import time
+import pandas as pd
 
 def game_results(word, scoreboard):
     """
@@ -10,10 +11,15 @@ def game_results(word, scoreboard):
     """
     print(f"\nThe word was: {word}")
     time.sleep(2)
-    ### print scoreboard
-    print("\nNumber of guesses:")
-    for player, letter_guesses in scoreboard.items():
-        print(f"{player}: {letter_guesses}")
+
+    name = list(scoreboard.keys())
+    guess_number = list(scoreboard.values())
+    player_data = {"Players:" : name,
+                "Guesses:" : guess_number}
+    player_dataframe = pd.DataFrame(data = player_data) 
+    print(player_dataframe.to_string(index = False))
     time.sleep(2)
+
     print("\n\nThanks for playing!\n\n\n")
+
     quit()
