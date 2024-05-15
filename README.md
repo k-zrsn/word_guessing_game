@@ -28,4 +28,4 @@ wrong.
 
 5. If a player has correctly guessed the word, they win and a scoreboard will be presented.
 
-6. After ten guesses and players still can't figure out the word, they will have the option to give up.
+6. After ten guesses and players still can't figure out the word, they will have the option to give up, get a hint, or continue playing.
