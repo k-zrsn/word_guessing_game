@@ -153,7 +153,7 @@ while play_loop:
                 print(f"{player}: {letter_guesses}")
 
             ### option to give up after 10 attempts
-            if letter_guesses == 1:
+            if letter_guesses == 10:
                 give_up = input("\n\nWould you like to give up?\nTo give up, type 'g'\nFor a hint, type 'h'\nTo continue playing, type 'c'\n\n").lower()
 
                 ### give up game
