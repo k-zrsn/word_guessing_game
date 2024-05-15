@@ -1,8 +1,7 @@
-### word guessing game 
+### UMD Word Guessing Game 
 
 import random
 import time
-import pandas as pd
 import turn
 import results
 import hints
@@ -34,7 +33,7 @@ while getting_count:
         print("\nInvalid input, please enter a number.")
 
 
-### create scoreboard
+### create and print scoreboard
 scoreboard = {}
 for i in range(1, player_count + 1):
     player_name = input(f"\nEnter name for Player {i}: ").upper()
@@ -43,17 +42,9 @@ for i in range(1, player_count + 1):
 time.sleep(1)
 print("\n\nThe scoreboard is set!\n")
 time.sleep(1)
-
-
-### create and print scoreboard dataframe
-name = list(scoreboard.keys())
-guess_number = list(scoreboard.values())
-
-player_data = {"Player:" : name,
-               "Guesses:" : guess_number}
-
-player_dataframe = pd.DataFrame(data = player_data) 
-print(player_dataframe.to_string(index = False))
+print("\nNumber of guesses:")
+for player, letter_guesses in scoreboard.items():
+    print(f"{player}: {letter_guesses}")
 
 
 ### print rules for the game
@@ -99,9 +90,9 @@ while play_loop:
                     if word_guess == word:
                         time.sleep(2)
                         print(f"\n\n\nCongratulations! {player} won!")
-                        
-                        ### print results
+                        ### print results    
                         results.game_results(word, scoreboard)
+
 
                     ### wrong word, keep playing
                     else:
@@ -117,7 +108,7 @@ while play_loop:
 
                             ### print results
                             results.game_results(word, scoreboard)
-                            play_loop = False
+
                 time.sleep(1)
             
             ### get player's letter guess
@@ -162,7 +153,7 @@ while play_loop:
 
                     ### print results
                     results.game_results(word, scoreboard)
-
+                
                 ### give hint
                 elif give_up == "h":
                     time.sleep(1)
