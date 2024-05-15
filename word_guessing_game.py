@@ -100,7 +100,9 @@ while play_loop:
                         print("\n\nSorry, that is not the word.")
                         incorrect_guess[player] -= 1
                         time.sleep(1)
-                        print(f"\n{player} has {incorrect_guess[player]} mistake(s) left.\n\n \nIt's still {player}'s turn.")
+                        print(f"\n{player} has {incorrect_guess[player]} mistake(s) left.\n\n")
+                        time.sleep(2)
+                        print(f"It's still {player}'s turn.")
 
                         ### lose game when player has no more mistakes remaining
                         if incorrect_guess[player] == 0: 
