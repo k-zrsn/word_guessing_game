@@ -9,7 +9,7 @@ def game_results(word, scoreboard):
     Docstring:
     A function that prints the results of the game
     """
-    print(f"\nThe word was: {word}")
+    print(f"\nThe word was: {word}\n")
     time.sleep(2)
 
     name = list(scoreboard.keys())
@@ -21,5 +21,6 @@ def game_results(word, scoreboard):
     time.sleep(2)
 
     print("\n\nThanks for playing!\n\n\n")
+    time.sleep(1)
 
     quit()
