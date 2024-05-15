@@ -34,7 +34,7 @@ while getting_count:
         print("\nInvalid input, please enter a number.")
 
 
-### create and print the scoreboard
+### create scoreboard
 scoreboard = {}
 for i in range(1, player_count + 1):
     player_name = input(f"\nEnter name for Player {i}: ").upper()
@@ -43,6 +43,9 @@ for i in range(1, player_count + 1):
 time.sleep(1)
 print("\n\nThe scoreboard is set!\n")
 time.sleep(1)
+
+
+### create and print scoreboard dataframe
 name = list(scoreboard.keys())
 guess_number = list(scoreboard.values())
 
@@ -60,6 +63,7 @@ if player_count > 1:
 
     time.sleep(3)
     print("\nBut whoever guesses the word first wins!\n")
+    
 else:
     time.sleep(1.5)
     print("\nRULES:\nTry to guess each LETTER of the word\nYou have 3 attempts to guess the WHOLE word\n\nGood luck!\n")
